@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Online - Laudos e Atestados Médicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00d4ff;
+        }
+
+        .whatsapp-header {
+            background: #25D366;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-header:hover {
+            transform: scale(1.05);
+            background: #20bd5a;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: #25D366;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            background: #20bd5a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .services {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #0066cc;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .benefits {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .benefits h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #0066cc;
+        }
+
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            background: #e8f4ff;
+            transform: translateX(10px);
+        }
+
+        .check-icon {
+            color: #25D366;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .how-it-works {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #0066cc;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .whatsapp-button:hover {
+            background: #20bd5a;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .services h2, .benefits h2, .how-it-works h2, .contact-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    Saúde<span>Online</span>
+                </div>
+                <a href="https://wa.me/5561999999999" class="whatsapp-header" target="_blank">
+                    📱 (61) 99999-9999
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Laudos e Atestados Médicos Online</h1>
+            <p>Rapidez, segurança e praticidade na emissão dos seus documentos médicos</p>
+            <a href="https://wa.me/5561999999999" class="cta-button" target="_blank">
+                Solicitar Agora
+            </a>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Atestados Médicos</h3>
+                    <p>Atestados para trabalho, escola e outras finalidades emitidos por profissionais qualificados</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Laudos de Exames</h3>
+                    <p>Interpretação e laudos de exames laboratoriais e de imagem com agilidade</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Receitas Médicas</h3>
+                    <p>Receituário médico digital válido em todo território nacional</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Teleconsulta</h3>
+                    <p>Atendimento médico online com profissionais certificados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2>Por Que Escolher a Saúde Online?</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Atendimento 24/7:</strong> Disponível a qualquer hora, todos os dias</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Médicos Certificados:</strong> Profissionais registrados no CRM</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Documentos Válidos:</strong> Aceitos em empresas e instituições</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Rapidez:</strong> Documentos emitidos em até 2 horas</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Segurança:</strong> Seus dados protegidos pela LGPD</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Praticidade:</strong> Tudo pelo WhatsApp, sem sair de casa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Entre em Contato</h3>
+                    <p>Envie uma mensagem pelo WhatsApp informando o serviço desejado</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Consulta Online</h3>
+                    <p>Nosso médico realizará a consulta ou análise do seu caso</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receba o Documento</h3>
+                    <p>Seu atestado ou laudo será enviado digitalmente em PDF</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Pronto para Usar</h3>
+                    <p>Documento válido e pronto para apresentar onde precisar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Precisa de um Atestado ou Laudo?</h2>
+            <p>Entre em contato agora pelo WhatsApp e seja atendido rapidamente</p>
+            <a href="https://wa.me/5561999999999?text=Olá! Gostaria de solicitar um atestado/laudo médico" class="whatsapp-button" target="_blank">
+                <span>📱</span>
+                <span>(61) 99999-9999</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Saúde Online - Todos os direitos reservados</p>
+            <p>Serviços prestados por médicos devidamente registrados no CRM</p>
+        </div>
+    </footer>
+</body>
+</html>
